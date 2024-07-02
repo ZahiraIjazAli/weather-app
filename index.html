@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+ .bg{
+
+background-image: url('img.jpg');
+background-repeat: no-repeat;
+margin-left: 10%;
+margin-top: 3%;
+
+
+}
+
+    </style>
+    <title>Weather App</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg" >
+    
+    <h1 id="a" style=" font-weight: bolder; font-style: italic; color: black; ; ">Weather App</h1>
+    <form onsubmit="getWeather(); return false;" style="padding-top: 2%;">
+     <label for="Tmp" style="font-weight: bold; font-size: larger; color: black;">Country</label>
+     <input type="text" name="Tmp" id="tmp1" placeholder="Enter Country name" style="padding: 4px; background-color: black; color: white;  font-size: large; border-radius: 8px; outline: auto; cursor: pointer;">
+     <button type="submit"  style="padding: 4px; background-color: black; color: white; font-size: large; border-radius: 8px; outline: auto; cursor: pointer;">Click Here</button>
+    </form>
+
+
+    <script>
+     function getWeather(){
+        var country=document.getElementById("tmp1").value;
+        axios.get(`https://api.weatherapi.com/v1/current.json?key=61e1c0b974a6478585f105628242705&q=${country}&aqi=yes`)
+
+     .then(function (response){
+        console.log(response);
+        var weather =response.data
+       console.log(weather)
+       document.querySelector('#a').innerHTML=(`Today's temprature is ${weather.current.temp_c}`)
+        
+     })
+     .catch(function(error){
+
+        console.log(error);
+     })
+
+     }
+
+
+
+
+    </script>
+
+
+
+
+
+
+</body>
+</html>
